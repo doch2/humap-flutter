@@ -42,7 +42,7 @@ class LoginPage extends GetView<LoginPageController> {
             const SizedBox(height: 32),
             LoginButton(btnType: LoginButtonType.google, clickAction: () => controller.authService.signInWithGoogle()),
             const SizedBox(height: 16),
-            LoginButton(btnType: LoginButtonType.kakao, clickAction: () => controller.authService.signInWithGoogle()),
+            LoginButton(btnType: LoginButtonType.kakao, clickAction: () => controller.authService.signInWithKakao()),
           ],
         ),
       ),

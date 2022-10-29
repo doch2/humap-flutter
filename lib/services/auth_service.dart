@@ -1,6 +1,9 @@
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:get/get.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao_flutter_lib;
+import 'package:get/get.dart' hide Response;
 
 import '../models/user.dart';
 import '../routes/routes.dart';
@@ -10,6 +13,8 @@ import 'toast.dart';
 class AuthService extends GetxController{
   FirebaseAuth authInstance = FirebaseAuth.instance;
   FirestoreDatabase _firestoreDatabase = FirestoreDatabase();
+  Dio _dio = Get.find<Dio>();
+  HumapToast _humapToast = HumapToast();
 
   Rxn<User> _firebaseUser = Rxn<User>();
   User? get firebaseUser => _firebaseUser.value;
@@ -69,6 +74,47 @@ class AuthService extends GetxController{
     }
     isLogin = true;
     Get.toNamed(PageRoutes.HOME);
+  }
+
+  signInWithKakao() async {
+    try {
+      final installed = await kakao_flutter_lib.isKakaoTalkInstalled();
+      kakao_flutter_lib.OAuthToken loginToken = installed
+          ? await kakao_flutter_lib.UserApi.instance.loginWithKakaoTalk()
+          : await kakao_flutter_lib.UserApi.instance.loginWithKakaoAccount();
+
+      kakao_flutter_lib.User kakaoUser = await kakao_flutter_lib.UserApi.instance.me();
+
+      loginUserInfo["type"] = "K";
+      loginUserInfo["userid"] = "kakao:${kakaoUser.id}";
+      loginUserInfo["email"] = kakaoUser.kakaoAccount!.email;
+      loginUserInfo["name"] = kakaoUser.kakaoAccount!.profile!.nickname;
+      loginUserInfo["profileImgUrl"] = kakaoUser.kakaoAccount!.profile!.profileImageUrl;
+
+      _humapToast.showToast("카카오 로그인 중입니다.\n카카오톡 연동에 시간이 걸리니 잠시만 기다려주세요.");
+      print(loginToken.accessToken);
+
+      HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('kakaoToken');
+      final resp = await callable.call(<String, dynamic>{
+        'access_token': loginToken.accessToken,
+      });
+
+      UserCredential _authResult = await FirebaseAuth.instance.signInWithCustomToken(resp.data['result']);
+
+      if (await _firestoreDatabase.isAlreadyRegisterUser(loginUserInfo["userid"])) {
+        user = await _firestoreDatabase.getUser(loginUserInfo["userid"]);
+      } else {
+        await writeAccountInfo();
+      }
+      isLogin = true;
+      Get.toNamed(PageRoutes.HOME);
+    } catch (e) {
+      if (e.toString().contains("User canceled login.")) {
+        _humapToast.showToast("카카오 로그인을 취소하셨습니다.");
+      } else {
+        print(e);
+      }
+    }
   }
 
   logOut() async {

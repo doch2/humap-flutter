@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:humap/services/app_first_run.dart';
+import 'package:humap/token_reference.dart';
 import 'package:is_first_run/is_first_run.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 
 import 'services/auth_service.dart';
 import 'routes/pages.dart';
@@ -15,6 +17,10 @@ import 'routes/routes.dart';
 Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  KakaoSdk.init(
+    nativeAppKey: TokenReference.KAKAONATIVEKEY,
+    javaScriptAppKey: TokenReference.KAKAOJAVASCRIPTKEY
+  );
 
   Get.put(AppFirstRun(isAppFirstRun: (await IsFirstRun.isFirstRun())));
   Get.lazyPut(() => Dio());
