@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:humap/services/auth_service.dart';
 
 import '../../routes/routes.dart';
 import '../../themes/color_theme.dart';
@@ -14,7 +15,15 @@ class HomePage extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Home Page")
+        child: Column(
+          children: [
+            Text("Home Page"),
+            GestureDetector(
+              onTap: () => Get.find<AuthService>().logOut(),
+              child: Text("로그아웃하기"),
+            )
+          ],
+        )
       ),
     );
   }
