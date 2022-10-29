@@ -74,14 +74,3 @@ class PurpleButton extends StatelessWidget {
     );
   }
 }
-
-class TestWidget extends StatelessWidget {
-  const TestWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: const Text('테스트', textAlign: TextAlign.center),
-    );
-  }
-}

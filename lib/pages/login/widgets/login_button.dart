@@ -7,30 +7,30 @@ import '../../../themes/text_theme.dart';
 
 enum LoginButtonType {
   google,
-  apple
+  kakao
 }
 
 extension LoginButtonTypeExtension on LoginButtonType {
   String get convertBtnContent {
     switch (this) {
-      case LoginButtonType.google: return "구글";
-      case LoginButtonType.apple: return "애플";
+      case LoginButtonType.google: return "구글로 로그인";
+      case LoginButtonType.kakao: return "카카오톡으로 로그인";
       default: return "";
     }
   }
 
-  Color get convertBackgroundColor {
+  Color get backgroundColor {
     switch (this) {
       case LoginButtonType.google: return Colors.white;
-      case LoginButtonType.apple: return grayTwo;
+      case LoginButtonType.kakao: return yellowOne;
       default: return Colors.transparent;
     }
   }
 
-  Color get convertButtonColor {
+  Color get borderColor {
     switch (this) {
-      case LoginButtonType.google: return blackOne;
-      case LoginButtonType.apple: return Colors.white;
+      case LoginButtonType.google: return grayOne;
+      case LoginButtonType.kakao: return grayTwo;
       default: return Colors.transparent;
     }
   }
@@ -39,12 +39,11 @@ extension LoginButtonTypeExtension on LoginButtonType {
     switch (this) {
       case LoginButtonType.google: return SvgPicture.asset(
         "assets/images/googleIcon.svg",
-        width: 38,
+        width: 24,
       );
-      case LoginButtonType.apple: return SvgPicture.asset(
-        "assets/images/appleIcon.svg",
-        width: 38,
-        color: grayFour,
+      case LoginButtonType.kakao: return SvgPicture.asset(
+        "assets/images/kakaoIcon.svg",
+        width: 24,
       );
       default: return SizedBox();
     }
@@ -61,42 +60,23 @@ class LoginButton extends StatelessWidget {
     return GestureDetector(
       onTap: clickAction,
       child: Container(
-        width: 321,
-        height: 76,
+        width: 320,
+        height: 55,
         decoration: BoxDecoration(
-          color: btnType.convertBackgroundColor,
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x40C0C0C0),
-              offset: Offset(0, 4),
-              blurRadius: 5
-            )
-          ],
-          border: Border.all(color: (btnType == LoginButtonType.google ? grayThree : Colors.transparent))
+          color: btnType.backgroundColor,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: btnType.borderColor)
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(width: 22),
-            btnType.convertIconWidget,
-            const SizedBox(width: 64),
-            Text("${btnType.convertBtnContent} 소셜 로그인")
+            Expanded(child: Center(child: btnType.convertIconWidget), flex: 3),
+            Expanded(child: Center(child: Text(btnType.convertBtnContent, style: loginBtn)), flex: 4),
+            Expanded(child: SizedBox(), flex: 2)
           ],
         ),
       ),
-    );
-  }
-}
-
-class TestWidget extends StatelessWidget {
-  const TestWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: const Text('테스트', textAlign: TextAlign.center),
     );
   }
 }

@@ -4,9 +4,15 @@ import 'color_theme.dart';
 
 const purpleBtn = TextStyle(
     color: Colors.white, fontFamily: "suit", fontWeight: FontWeight.w700);
+const loginBtn = TextStyle(
+    fontSize: 16, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w600);
 
-const loginPage_title = TextStyle(
-    fontSize: 36, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w700, letterSpacing: 0);
+TextStyle loginPage_title = TextStyle(
+    fontSize: 30, color: mainColor, fontFamily: "suit", fontWeight: FontWeight.w800, letterSpacing: 2);
+const loginPage_description = TextStyle(
+    fontSize: 14, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w500, letterSpacing: -0.5);
+TextStyle loginPage_simpleLogin = TextStyle(
+    fontSize: 14, color: grayThree, fontFamily: "suit", fontWeight: FontWeight.w500);
 
 const landingPage_title = TextStyle(
     fontSize: 20, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w700);
