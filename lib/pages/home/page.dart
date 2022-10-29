@@ -16,6 +16,7 @@ class HomePage extends GetView<HomePageController> {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Home Page"),
             GestureDetector(

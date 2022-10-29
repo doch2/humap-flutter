@@ -16,3 +16,8 @@ TextStyle loginPage_simpleLogin = TextStyle(
 
 const landingPage_title = TextStyle(
     fontSize: 20, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w700);
+
+const privacyPolicyAgreePage_title = TextStyle(
+    fontSize: 20, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w700);
+TextStyle privacyPolicyAgreePage_description = TextStyle(
+    fontSize: 16, color: grayFour, fontFamily: "suit", fontWeight: FontWeight.w400);

@@ -36,8 +36,8 @@ class AuthService extends GetxController{
     _firebaseUser.value = authInstance.currentUser;
 
     if (firebaseUser != null) {
-      _userModel.value = await FirestoreDatabase().getUser(firebaseUser!.uid);
       isLogin = true;
+      _userModel.value = await FirestoreDatabase().getUser(firebaseUser!.uid);
       Get.toNamed(PageRoutes.HOME);
     }
   }
@@ -73,7 +73,7 @@ class AuthService extends GetxController{
       await writeAccountInfo();
     }
     isLogin = true;
-    Get.toNamed(PageRoutes.HOME);
+    Get.offAndToNamed(PageRoutes.PRIVACYPOLICYAGREE);
   }
 
   signInWithKakao() async {
@@ -107,7 +107,7 @@ class AuthService extends GetxController{
         await writeAccountInfo();
       }
       isLogin = true;
-      Get.toNamed(PageRoutes.HOME);
+      Get.toNamed(PageRoutes.PRIVACYPOLICYAGREE);
     } catch (e) {
       if (e.toString().contains("User canceled login.")) {
         _humapToast.showToast("카카오 로그인을 취소하셨습니다.");
@@ -126,6 +126,7 @@ class AuthService extends GetxController{
       isLogin = false;
 
       HumapToast().showToast("로그아웃 되었습니다.");
+      Get.offAndToNamed(PageRoutes.LOGIN);
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
         "로그아웃 오류",
