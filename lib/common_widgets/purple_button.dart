@@ -49,6 +49,16 @@ extension PurpleButtonSizeTypeExtension on PurpleButtonSizeType {
   }
 }
 
+extension PurpleButtonStatusTypeExtension on PurpleButtonStatusType {
+  Color get color {
+    switch (this) {
+      case PurpleButtonStatusType.enable: return mainColor;
+      case PurpleButtonStatusType.disable: return grayFour;
+      default: return Colors.transparent;
+    }
+  }
+}
+
 class PurpleButton extends StatelessWidget {
   PurpleButtonSizeType btnSizeType;
   PurpleButtonStatusType btnStatusType;
@@ -64,7 +74,7 @@ class PurpleButton extends StatelessWidget {
         width: btnSizeType.width,
         height: btnSizeType.height,
         decoration: BoxDecoration(
-          color: mainColor,
+          color: btnStatusType.color,
           borderRadius: BorderRadius.circular(btnSizeType.borderRadius),
         ),
         child: Center(

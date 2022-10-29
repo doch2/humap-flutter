@@ -3,4 +3,5 @@ abstract class PageRoutes {
   static const LOGIN = '/Login';
   static const LANDING = '/Landing';
   static const PRIVACYPOLICYAGREE = '/PrivacyPolicyAgree';
+  static const CONTACTINFOCONNECTAGREE = '/ContactInfoConnectAgree';
 }

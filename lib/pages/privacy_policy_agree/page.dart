@@ -55,7 +55,7 @@ class PrivacyPolicyAgreePage extends StatelessWidget {
               btnSizeType: PurpleButtonSizeType.small,
               btnStatusType: PurpleButtonStatusType.enable,
               btnText: "동의",
-              clickAction: () => Get.offAndToNamed(PageRoutes.PRIVACYPOLICYAGREE),
+              clickAction: () => Get.offAndToNamed(PageRoutes.CONTACTINFOCONNECTAGREE),
             )
           ],
         )

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:humap/middleware/LandingMiddleware.dart';
+import 'package:humap/pages/contact_info_connect_agree/page.dart';
 import 'package:humap/pages/landing/page.dart';
 import 'package:humap/pages/privacy_policy_agree/page.dart';
 
@@ -16,5 +17,6 @@ class SinibankPages {
     GetPage(name: PageRoutes.LOGIN, page: () => const LoginPage(), binding: LoginPageBinding(), middlewares: [LandingMiddleware()]),
     GetPage(name: PageRoutes.LANDING, page: () => const LandingPage()),
     GetPage(name: PageRoutes.PRIVACYPOLICYAGREE, page: () => const PrivacyPolicyAgreePage()),
+    GetPage(name: PageRoutes.CONTACTINFOCONNECTAGREE, page: () => const ContactInfoConnectAgreePage()),
   ];
 }
