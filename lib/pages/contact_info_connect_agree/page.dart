@@ -1,9 +1,6 @@
-import 'package:card_swiper/card_swiper.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:humap/common_widgets/purple_button.dart';
-import 'package:humap/services/app_first_run.dart';
 import 'package:humap/services/auth_service.dart';
 import 'package:humap/themes/color_theme.dart';
 import 'package:humap/themes/text_theme.dart';
@@ -17,6 +14,7 @@ class ContactInfoConnectAgreePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +61,7 @@ class ContactInfoConnectAgreePage extends StatelessWidget {
                   btnSizeType: PurpleButtonSizeType.small,
                   btnStatusType: PurpleButtonStatusType.enable,
                   btnText: "사용하기",
-                  clickAction: () => Get.offAndToNamed(PageRoutes.HOME),
+                  clickAction: () => Get.offAndToNamed(PageRoutes.NETWORKMAKING),
                 )
               ],
             )

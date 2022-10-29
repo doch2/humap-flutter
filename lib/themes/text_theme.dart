@@ -26,3 +26,6 @@ const contactInfoConnectAgreePage_title = TextStyle(
     fontSize: 20, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w700, letterSpacing: -0.8);
 TextStyle contactInfoConnectAgreePage_description = TextStyle(
     fontSize: 16, color: grayFour, fontFamily: "suit", fontWeight: FontWeight.w400, letterSpacing: -0.8);
+
+const networkMakingPage_title = TextStyle(
+    fontSize: 20, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w700, letterSpacing: -0.2);
