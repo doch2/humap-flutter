@@ -76,5 +76,9 @@
 	</dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <key>NMFClientId</key>
+    <string>c942rcnca0</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>HuMap의 지역 인맥 확인 기능을 위해 사용됩니다.</string>
 </dict>
 </plist>

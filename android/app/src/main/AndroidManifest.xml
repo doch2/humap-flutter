@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gracia.humap">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="humap"
         android:name="${applicationName}"
@@ -38,6 +43,10 @@
                <data android:scheme="kakao4f314d7c93aa42b0321c17a43fdd3982" android:host="oauth"/>
            </intent-filter>
        </activity>
+
+       <meta-data
+           android:name="com.naver.maps.map.CLIENT_ID"
+           android:value="c942rcnca0" />
 
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->

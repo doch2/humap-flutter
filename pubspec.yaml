@@ -52,6 +52,8 @@ dependencies:
   extended_image: ^6.1.0
   card_swiper: ^2.0.4
   lottie: ^1.4.3
+  network_graph: ^0.1.1
+  flutter_naver_map: ^0.10.5
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -82,6 +84,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/icons/
     - assets/lotties/
 
   fonts:
