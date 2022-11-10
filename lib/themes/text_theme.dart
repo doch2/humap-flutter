@@ -29,3 +29,16 @@ TextStyle contactInfoConnectAgreePage_description = TextStyle(
 
 const networkMakingPage_title = TextStyle(
     fontSize: 20, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w700, letterSpacing: -0.2);
+
+const chatPage_title = TextStyle(
+    fontSize: 18, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w500);
+const chatPage_personName = TextStyle(
+    fontSize: 14, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w700);
+final chatPage_chatPreview = TextStyle(
+    fontSize: 13, color: graySeven, fontFamily: "suit", fontWeight: FontWeight.w500);
+final chatPage_chatBubble_name = TextStyle(
+    fontSize: 13, color: grayEight, fontFamily: "suit", fontWeight: FontWeight.w600);
+const chatPage_chatBubble_content = TextStyle(
+    fontSize: 13, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w500);
+final chatPage_textField = TextStyle(
+    fontSize: 16, color: graySeven, fontFamily: "suit", fontWeight: FontWeight.w500);

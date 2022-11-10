@@ -36,16 +36,18 @@ dependencies:
   dio: ^4.0.1
 
   firebase_core: ^2.1.1
-  firebase_auth: ^4.1.0
-  google_sign_in: ^5.2.1
+  firebase_auth: ^4.1.1
+  google_sign_in: ^5.4.2
   kakao_flutter_sdk: ^1.2.2
   cloud_firestore: ^4.0.3
   cloud_functions: ^4.0.3
+  firebase_database: ^10.0.4
 
   shared_preferences: ^2.0.15
   flutter_secure_storage: ^5.0.2
   intl: ^0.17.0
   is_first_run: ^1.0.0
+  random_string: ^2.3.1
 
   fluttertoast: ^8.0.9
   flutter_svg: ^0.23.0+1
@@ -54,6 +56,7 @@ dependencies:
   lottie: ^1.4.3
   network_graph: ^0.1.1
   flutter_naver_map: ^0.10.5
+  hexagon: ^0.2.0-nullsafety.1
 
 
   # The following adds the Cupertino Icons font to your application.

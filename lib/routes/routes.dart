@@ -5,4 +5,6 @@ abstract class PageRoutes {
   static const PRIVACYPOLICYAGREE = '/PrivacyPolicyAgree';
   static const CONTACTINFOCONNECTAGREE = '/ContactInfoConnectAgree';
   static const NETWORKMAKING = '/NetworkMaking';
+  static const CHATLIST = '/ChatList';
+  static const CHATROOM = '/ChatRoom';
 }

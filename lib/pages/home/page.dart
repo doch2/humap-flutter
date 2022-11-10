@@ -256,7 +256,7 @@ class HomePage extends GetView<HomePageController> {
               duration: optionAnimatedDuration,
               curve: Curves.easeIn,
               right: (controller.isMoreOptionOpen.value ? 96 : -50),
-              child: MoreOptionButton(btnType: MoreOptionButtonType.chat, clickAction: () => print("onClick"))
+              child: MoreOptionButton(btnType: MoreOptionButtonType.chat, clickAction: () => Get.toNamed(PageRoutes.CHATLIST))
             )),
             Obx(() => AnimatedPositioned(
                 top: 124,
@@ -272,6 +272,13 @@ class HomePage extends GetView<HomePageController> {
                 right: (controller.isMoreOptionOpen.value ? 30 : -50),
                 child: MoreOptionButton(btnType: MoreOptionButtonType.post, clickAction: () => print("onClick"))
             )),
+            Positioned(
+              top: 48,
+              child: GestureDetector(
+                onTap: () => Get.find<AuthService>().logOut(),
+                child: Text("로그아웃 하기"),
+              ),
+            )
           ],
         )
       ),

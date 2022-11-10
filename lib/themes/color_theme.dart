@@ -12,6 +12,10 @@ final grayTwo = Color(0xA000000);
 final grayThree = Color(0xFFC4C4C4);
 final grayFour = Color(0xFFABB0B0);
 final grayFive = Color(0xFF646464);
+final graySix = Color(0xFFEDEDED);
+final graySeven = Color(0xFFB0B0B0);
+final grayEight = Color(0xFF767676);
+final grayNine = Color(0xFFD9D9D9);
 
 final blackOne = Color(0xFF333333);
 

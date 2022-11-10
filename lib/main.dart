@@ -32,7 +32,7 @@ Future main() async {
     GetMaterialApp(
       title: 'HuMap',
       initialRoute: PageRoutes.HOME,
-      getPages: SinibankPages.pages,
+      getPages: HumapPages.pages,
       debugShowCheckedModeBanner: true
     ),
   );

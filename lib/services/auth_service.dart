@@ -65,6 +65,8 @@ class AuthService extends GetxController{
     loginUserInfo["userid"] = _authResult.user?.uid;
     loginUserInfo["email"] = googleUser?.email;
     loginUserInfo["name"] = googleUser?.displayName;
+    loginUserInfo["profileImgUrl"] = googleUser?.photoUrl;
+
 
     if (await _firestoreDatabase.isAlreadyRegisterUser(loginUserInfo["userid"])) {
       //await _apiProvider.userLogin("google", loginUserInfo["userid"]);
@@ -141,6 +143,7 @@ class AuthService extends GetxController{
         id: loginUserInfo["userid"],
         email: loginUserInfo["email"],
         name: loginUserInfo["name"],
+        profileImg: loginUserInfo["profileImgUrl"]
     );
 
     await _firestoreDatabase.createNewUser(_user);
