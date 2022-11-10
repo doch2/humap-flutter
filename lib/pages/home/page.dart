@@ -225,12 +225,15 @@ class HomePage extends GetView<HomePageController> {
             ),
             Obx(() => Positioned(
               top: (controller.isMoreOptionOpen.value ? 0 : Get.height),
-              child: AnimatedContainer(
-                duration: optionAnimatedDuration,
-                curve: Curves.easeIn,
-                width: Get.width,
-                height: Get.height,
-                color: Colors.black.withOpacity(controller.isMoreOptionOpen.value ? 0.5 : 0),
+              child: GestureDetector(
+                onTap: () => controller.isMoreOptionOpen.value = !(controller.isMoreOptionOpen.value),
+                child: AnimatedContainer(
+                  duration: optionAnimatedDuration,
+                  curve: Curves.easeIn,
+                  width: Get.width,
+                  height: Get.height,
+                  color: Colors.black.withOpacity(controller.isMoreOptionOpen.value ? 0.5 : 0),
+                ),
               ),
             )),
             Obx(() => AnimatedPositioned(
