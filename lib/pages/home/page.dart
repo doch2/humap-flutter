@@ -19,6 +19,56 @@ class HomePage extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     Duration animatedDuration = const Duration(milliseconds: 300);
     Duration optionAnimatedDuration = const Duration(milliseconds: 200);
+
+    List<Marker> markerList = [];
+    OverlayImage.fromAssetImage(
+      assetName: 'assets/images/hexagonInMap.png',
+    ).then((image) {
+      markerList.add(Marker(
+        markerId: 'id1',
+        position: LatLng(36.335800, 127.452833),
+        captionText: "유도희",
+        captionColor: Colors.indigo,
+        captionTextSize: 20.0,
+        captionOffset: -60,
+        icon: image,
+        anchor: AnchorPoint(0.5, 1),
+        width: 85,
+        height: 85,
+        infoWindow: '인포 윈도우',));
+
+      markerList.add(Marker(
+        markerId: 'id2',
+        position: LatLng(36.335800, 127.448833),
+        captionText: "라윤지",
+        captionColor: Colors.indigo,
+        captionTextSize: 20.0,
+        captionOffset: -60,
+        icon: image,
+        anchor: AnchorPoint(0.5, 1),
+        width: 85,
+        height: 85,
+        infoWindow: '인포 윈도우',));
+    });
+
+    OverlayImage.fromAssetImage(
+      assetName: 'assets/images/hexagonInMapBlue.png',
+    ).then((image) {
+      markerList.add(Marker(
+        markerId: 'id3',
+        position: LatLng(36.334200, 127.448833),
+        captionText: "오명훈",
+        captionColor: Colors.indigo,
+        captionTextSize: 20.0,
+        captionOffset: -60,
+        icon: image,
+        anchor: AnchorPoint(0.5, 1),
+        width: 85,
+        height: 85,
+        infoWindow: '인포 윈도우',));
+    });
+
+
     
     return Scaffold(
       backgroundColor: HuMapColor.blueOne,
@@ -102,6 +152,7 @@ class HomePage extends GetView<HomePageController> {
                 child: NaverMap(
                   useSurface: kReleaseMode,
                   locationButtonEnable: true,
+                  markers: markerList,
                 ),
               ),
             )),
