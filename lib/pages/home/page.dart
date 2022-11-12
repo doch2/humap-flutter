@@ -81,6 +81,7 @@ class HomePage extends GetView<HomePageController> {
               width: Get.width,
               height: Get.height,
               child: MultiNetworkGraphView(
+                isShowArrowShape: false,
                 nodeGroupList: [
                   NodeGroup(
                       title: "디미고",
