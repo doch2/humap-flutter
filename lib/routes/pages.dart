@@ -6,6 +6,7 @@ import 'package:humap/pages/contact_info_connect_agree/page.dart';
 import 'package:humap/pages/landing/page.dart';
 import 'package:humap/pages/network_making/binding.dart';
 import 'package:humap/pages/network_making/page.dart';
+import 'package:humap/pages/person_info/page.dart';
 import 'package:humap/pages/privacy_policy_agree/page.dart';
 
 import '../middleware/LoginMiddleware.dart';
@@ -27,5 +28,6 @@ class HumapPages {
     GetPage(name: PageRoutes.NETWORKMAKING, page: () => const NetworkMakingPage(), binding: NetworkMakingPageBinding()),
     GetPage(name: PageRoutes.CHATLIST, page: () => const ChatListPage(), binding: ChatListPageBinding()),
     GetPage(name: PageRoutes.CHATROOM, page: () => const ChatRoomPage(), binding: ChatRoomPageBinding()),
+    GetPage(name: PageRoutes.PERSONINFO, page: () => const PersonInfoPage()),
   ];
 }

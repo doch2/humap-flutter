@@ -7,4 +7,5 @@ abstract class PageRoutes {
   static const NETWORKMAKING = '/NetworkMaking';
   static const CHATLIST = '/ChatList';
   static const CHATROOM = '/ChatRoom';
+  static const PERSONINFO = '/PersonInfo';
 }

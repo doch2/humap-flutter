@@ -9,6 +9,11 @@ class HomePageController extends GetxController with StateMixin {
   RxBool isMapOpen = false.obs;
   RxBool isMoreOptionOpen = false.obs;
 
+  RxString profileImgURL = "".obs;
+  RxString personName = "".obs;
+  RxString personCategory = "".obs;
+  RxBool isPersonInfoShow = false.obs;
+
   @override
   void onInit() {
     change(null, status: RxStatus.success());

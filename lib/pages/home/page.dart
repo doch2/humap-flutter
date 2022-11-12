@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:humap/common_widgets/chat_profile_image.dart';
 import 'package:humap/pages/home/widgets/more_option_button.dart';
 import 'package:humap/services/auth_service.dart';
 import 'package:network_graph/network_graph.dart';
 
 import '../../routes/routes.dart';
 import '../../themes/color_theme.dart' as HuMapColor;
+import '../../themes/color_theme.dart';
 import '../../themes/text_theme.dart';
 import 'controller.dart';
 
@@ -88,11 +90,19 @@ class HomePage extends GetView<HomePageController> {
                       centerNodeOnClick: () => controller.humapToast.showToast("디미고 Center Node onClick"),
                       gradient: purpleLinearGradientOne,
                       childNodeList: [
-                        NodeModel(content: "라윤지"),
-                        NodeModel(content: "유도희"),
-                        NodeModel(content: "오명훈"),
-                        NodeModel(content: "이은수"),
-                        NodeModel(content: "김민성"),
+                        NodeModel(
+                          onClick: () {
+                            controller.personCategory.value = "디자이너";
+                            controller.personName.value = "라윤지";
+                            controller.profileImgURL.value = "https://user-images.githubusercontent.com/30923566/201456081-6dd066f5-bd34-4150-ac1e-d8bd55c14de4.png";
+                            controller.isPersonInfoShow.value = true;
+                          },
+                            content: "라윤지"
+                        ),
+                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "유도희"),
+                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "오명훈"),
+                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "이은수"),
+                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "김민성"),
                       ],
                       x: (Get.width / 2),
                       y: (Get.height / 1.6)
@@ -102,10 +112,10 @@ class HomePage extends GetView<HomePageController> {
                       centerNodeOnClick: () => controller.humapToast.showToast("대회 Center Node onClick"),
                       gradient: blueLinearGradientOne,
                       childNodeList: [
-                        NodeModel(content: "SW경진대회 멘토님"),
-                        NodeModel(content: "지도선생님"),
-                        NodeModel(content: "운영처"),
-                        NodeModel(content: "운영팀장님"),
+                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "SW경진대회 멘토님"),
+                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "지도선생님"),
+                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "운영처"),
+                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "운영팀장님"),
                       ],
                       x: (Get.width / 1.85),
                       y: (Get.height / 4.5)
@@ -137,7 +147,48 @@ class HomePage extends GetView<HomePageController> {
                           color: HuMapColor.grayFive,
                           borderRadius: BorderRadius.circular(1.5)
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 16),
+                    Obx(() => (
+                        controller.isPersonInfoShow.value ?
+                        Row(
+                          children: [
+                            Expanded(flex: 3, child: ChatProfileImage(sizeType: ChatProfileImageSizeType.big, profileImgURL: controller.profileImgURL.value)),
+                            Expanded(
+                              flex: 7,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("${controller.personName.value}", style: homePage_personName),
+                                  const SizedBox(height: 6),
+                                  Text("${controller.personCategory.value}", style: homePage_category),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => Get.toNamed(PageRoutes.PERSONINFO),
+                                    child: Container(
+                                      width: 35,
+                                      height: 35,
+                                      decoration: BoxDecoration(
+                                        color: mainColor,
+                                        borderRadius: BorderRadius.circular(5)
+                                      ),
+                                      child: Center(
+                                        child: SvgPicture.asset("assets/images/icons/people.svg"),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
+                        ) : SizedBox()
+                    ))
                   ],
                 ),
               ),

@@ -42,3 +42,8 @@ const chatPage_chatBubble_content = TextStyle(
     fontSize: 13, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w500);
 final chatPage_textField = TextStyle(
     fontSize: 16, color: graySeven, fontFamily: "suit", fontWeight: FontWeight.w500);
+
+final homePage_personName = TextStyle(
+    fontSize: 18, color: Colors.black, fontFamily: "suit", fontWeight: FontWeight.w600);
+final homePage_category = TextStyle(
+    fontSize: 14, color: grayFive, fontFamily: "suit", fontWeight: FontWeight.w500);
