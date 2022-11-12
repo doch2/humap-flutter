@@ -121,6 +121,7 @@ class AuthService extends GetxController{
 
   logOut() async {
     try {
+      await GoogleSignIn().disconnect();
       await authInstance.signOut();
 
       userModelClear();
