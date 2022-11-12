@@ -48,6 +48,7 @@ dependencies:
   intl: ^0.17.0
   is_first_run: ^1.0.0
   random_string: ^2.3.1
+  permission_handler: ^10.2.0
 
   fluttertoast: ^8.0.9
   flutter_svg: ^0.23.0+1

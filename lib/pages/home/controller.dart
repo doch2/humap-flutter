@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:humap/services/toast.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class HomePageController extends GetxController with StateMixin {
   HumapToast humapToast = HumapToast();
@@ -12,5 +13,7 @@ class HomePageController extends GetxController with StateMixin {
   void onInit() {
     change(null, status: RxStatus.success());
     super.onInit();
+    
+    Permission.locationWhenInUse.request();
   }
 }
