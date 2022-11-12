@@ -56,7 +56,9 @@ dependencies:
   card_swiper: ^2.0.4
   lottie: ^1.4.3
   network_graph: ^0.1.1
-  flutter_naver_map: ^0.10.5
+  flutter_naver_map:
+    git:
+      url: https://github.com/note11g/flutter_naver_map.git
   hexagon: ^0.2.0-nullsafety.1
 
 

@@ -13,7 +13,7 @@ class HomePageController extends GetxController with StateMixin {
   void onInit() {
     change(null, status: RxStatus.success());
     super.onInit();
-    
+
     Permission.locationWhenInUse.request();
   }
 }

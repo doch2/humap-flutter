@@ -6,9 +6,9 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="humap"
+        android:label="HuMap"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
