@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:humap/services/api_provider.dart';
 import 'package:humap/services/app_first_run.dart';
 import 'package:humap/token_reference.dart';
 import 'package:is_first_run/is_first_run.dart';
@@ -26,6 +27,7 @@ Future main() async {
   Get.lazyPut(() => Dio());
   Get.lazyPut(() => FlutterSecureStorage());
   Get.put<AuthService>(AuthService(), permanent: true);
+  Get.put<ApiProvider>(ApiProvider(), permanent: true);
 
 
   runApp(
