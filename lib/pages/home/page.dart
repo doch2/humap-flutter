@@ -35,7 +35,7 @@ class HomePage extends GetView<HomePageController> {
         anchor: AnchorPoint(0.5, 1),
         width: 85,
         height: 85,
-        infoWindow: '인포 윈도우',));
+        infoWindow: '유도희',));
 
       markerList.add(Marker(
         markerId: 'id2',
@@ -48,7 +48,7 @@ class HomePage extends GetView<HomePageController> {
         anchor: AnchorPoint(0.5, 1),
         width: 85,
         height: 85,
-        infoWindow: '인포 윈도우',));
+        infoWindow: '라윤지',));
     });
 
     OverlayImage.fromAssetImage(
@@ -65,7 +65,7 @@ class HomePage extends GetView<HomePageController> {
         anchor: AnchorPoint(0.5, 1),
         width: 85,
         height: 85,
-        infoWindow: '인포 윈도우',));
+        infoWindow: '오명훈',));
     });
 
 
@@ -90,9 +90,9 @@ class HomePage extends GetView<HomePageController> {
                       childNodeList: [
                         NodeModel(content: "라윤지"),
                         NodeModel(content: "유도희"),
-                        NodeModel(content: "홍길동"),
-                        NodeModel(content: "임꺽정"),
-                        NodeModel(content: "세종대왕"),
+                        NodeModel(content: "오명훈"),
+                        NodeModel(content: "이은수"),
+                        NodeModel(content: "김민성"),
                       ],
                       x: (Get.width / 2),
                       y: (Get.height / 1.6)
@@ -240,23 +240,42 @@ class HomePage extends GetView<HomePageController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  GestureDetector(
-                    onTap: () => controller.isMoreOptionOpen.value = !(controller.isMoreOptionOpen.value),
-                    child: Container(
-                      width: 32,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(7),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => Get.find<AuthService>().logOut(),
+                        child: Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset("assets/images/icons/logout.svg"),
+                          ),
+                        ),
                       ),
-                      child: Center(
-                        child: SvgPicture.asset("assets/images/icons/moreOption.svg"),
+                      const SizedBox(width: 12),
+                      GestureDetector(
+                        onTap: () => controller.isMoreOptionOpen.value = !(controller.isMoreOptionOpen.value),
+                        child: Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset("assets/images/icons/moreOption.svg"),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   const SizedBox(height: 24),
                   GestureDetector(
-                    onTap: () => Get.reloadAll(),
+                    onTap: () => print("onClick"),
                     child: Obx(() => Container(
                       width: 40,
                       height: 40,
@@ -327,13 +346,6 @@ class HomePage extends GetView<HomePageController> {
                 right: (controller.isMoreOptionOpen.value ? 30 : -50),
                 child: MoreOptionButton(btnType: MoreOptionButtonType.post, clickAction: () => print("onClick"))
             )),
-            Positioned(
-              top: 48,
-              child: GestureDetector(
-                onTap: () => Get.find<AuthService>().logOut(),
-                child: Text("로그아웃 하기"),
-              ),
-            )
           ],
         )
       ),
