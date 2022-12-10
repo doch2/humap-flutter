@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:get/get.dart';
 import 'package:humap/common_widgets/purple_button.dart';
 import 'package:humap/services/auth_service.dart';
@@ -61,7 +62,10 @@ class ContactInfoConnectAgreePage extends StatelessWidget {
                   btnSizeType: PurpleButtonSizeType.small,
                   btnStatusType: PurpleButtonStatusType.enable,
                   btnText: "사용하기",
-                  clickAction: () => Get.offAndToNamed(PageRoutes.NETWORKMAKING),
+                  clickAction: () async {
+                    await FlutterContacts.requestPermission();
+                    Get.offAndToNamed(PageRoutes.NETWORKMAKING);
+                  },
                 )
               ],
             )

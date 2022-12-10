@@ -7,6 +7,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:humap/services/api_provider.dart';
 import 'package:humap/services/app_first_run.dart';
+import 'package:humap/services/contact_service.dart';
+import 'package:humap/services/shared_preference.dart';
 import 'package:humap/token_reference.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
@@ -18,6 +20,7 @@ import 'routes/routes.dart';
 Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  SharedPreference();
   KakaoSdk.init(
     nativeAppKey: TokenReference.KAKAONATIVEKEY,
     javaScriptAppKey: TokenReference.KAKAOJAVASCRIPTKEY
@@ -28,6 +31,7 @@ Future main() async {
   Get.lazyPut(() => FlutterSecureStorage());
   Get.put<AuthService>(AuthService(), permanent: true);
   Get.put<ApiProvider>(ApiProvider(), permanent: true);
+  Get.put<ContactService>(ContactService());
 
 
   runApp(

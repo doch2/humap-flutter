@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -79,49 +80,63 @@ class HomePage extends GetView<HomePageController> {
           alignment: Alignment.center,
           children: [
             SizedBox(width: Get.width, height: Get.height),
-            SizedBox(
-              width: Get.width,
-              height: Get.height,
-              child: MultiNetworkGraphView(
-                isShowArrowShape: false,
-                nodeGroupList: [
-                  NodeGroup(
-                      title: "디미고",
-                      centerNodeOnClick: () => controller.humapToast.showToast("디미고 Center Node onClick"),
-                      gradient: purpleLinearGradientOne,
-                      childNodeList: [
-                        NodeModel(
-                          onClick: () {
-                            controller.personCategory.value = "디자이너";
-                            controller.personName.value = "라윤지";
-                            controller.profileImgURL.value = "https://user-images.githubusercontent.com/30923566/201456081-6dd066f5-bd34-4150-ac1e-d8bd55c14de4.png";
-                            controller.isPersonInfoShow.value = true;
-                          },
-                            content: "라윤지"
-                        ),
-                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "유도희"),
-                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "오명훈"),
-                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "이은수"),
-                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "김민성"),
-                      ],
-                      x: (Get.width / 2),
-                      y: (Get.height / 1.6)
-                  ),
-                  NodeGroup(
-                      title: "대회",
-                      centerNodeOnClick: () => controller.humapToast.showToast("대회 Center Node onClick"),
-                      gradient: blueLinearGradientOne,
-                      childNodeList: [
-                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "SW경진대회 멘토님"),
-                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "지도선생님"),
-                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "운영처"),
-                        NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: "운영팀장님"),
-                      ],
-                      x: (Get.width / 1.85),
-                      y: (Get.height / 4.5)
-                  )
-                ],
-              ),
+            FutureBuilder(
+              future: controller.getContactList(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  List<Contact> contactData = snapshot.data as List<Contact>;
+
+                  return SizedBox(
+                    width: Get.width,
+                    height: Get.height,
+                    child: (
+                      contactData.isNotEmpty ? MultiNetworkGraphView(
+                        isShowArrowShape: false,
+                        nodeGroupList: [
+                          NodeGroup(
+                              title: "분류없음",
+                              centerNodeOnClick: () => controller.humapToast.showToast("분류없음 Node입니다."),
+                              gradient: purpleLinearGradientOne,
+                              childNodeList: [
+                                NodeModel(
+                                    onClick: () {
+                                      controller.personCategory.value = "디자이너";
+                                      controller.personName.value = "라윤지";
+                                      controller.profileImgURL.value = "https://user-images.githubusercontent.com/30923566/201456081-6dd066f5-bd34-4150-ac1e-d8bd55c14de4.png";
+                                      controller.isPersonInfoShow.value = true;
+                                    },
+                                    content: "라윤지"
+                                ),
+                                NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: contactData[0].displayName),
+                                NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: contactData[1].displayName),
+                                NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: contactData[2].displayName),
+                                NodeModel(onClick: () => controller.isPersonInfoShow.value = false, content: contactData[3].displayName),
+                              ],
+                              x: (Get.width / 1.6),
+                              y: (Get.height / 1.6)
+                          ),
+                        ],
+                      ) : Center(child: Text("불러와진 연락처 정보가 없습니다.\n연락처 수집 권한을 부여하셨는지 확인해주세요."))
+                    ),
+                  );
+                } else if (snapshot.hasError) { //데이터를 정상적으로 불러오지 못했을 때
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(width: Get.width, height: Get.height * 0.835),
+                      Center(child: Text("데이터를 정상적으로 불러오지 못했습니다. \n다시 시도해 주세요.", textAlign: TextAlign.center)),
+                    ],
+                  );
+                } else { //데이터를 불러오는 중
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(width: Get.width, height: Get.height * 0.835),
+                      Center(child: CircularProgressIndicator()),
+                    ],
+                  );
+                }
+              }
             ),
             const Positioned(
               top: 16,

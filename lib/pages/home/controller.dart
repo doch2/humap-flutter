@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:get/get.dart';
+import 'package:humap/services/contact_service.dart';
 import 'package:humap/services/toast.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -21,4 +23,6 @@ class HomePageController extends GetxController with StateMixin {
 
     Permission.locationWhenInUse.request();
   }
+
+  getContactList() async => await Get.find<ContactService>().getContactList();
 }
