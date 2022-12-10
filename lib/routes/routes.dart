@@ -8,4 +8,5 @@ abstract class PageRoutes {
   static const CHATLIST = '/ChatList';
   static const CHATROOM = '/ChatRoom';
   static const PERSONINFO = '/PersonInfo';
+  static const UNDERCONSTRUCTION = '/UnderConstruction';
 }

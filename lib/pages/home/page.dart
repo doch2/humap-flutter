@@ -403,14 +403,14 @@ class HomePage extends GetView<HomePageController> {
                 duration: optionAnimatedDuration,
                 curve: Curves.easeIn,
                 right: (controller.isMoreOptionOpen.value ? 96 : -50),
-                child: MoreOptionButton(btnType: MoreOptionButtonType.search, clickAction: () => print("onClick"))
+                child: MoreOptionButton(btnType: MoreOptionButtonType.search, clickAction: () => Get.toNamed(PageRoutes.UNDERCONSTRUCTION))
             )),
             Obx(() => AnimatedPositioned(
                 top: 148,
                 duration: optionAnimatedDuration,
                 curve: Curves.easeIn,
                 right: (controller.isMoreOptionOpen.value ? 30 : -50),
-                child: MoreOptionButton(btnType: MoreOptionButtonType.post, clickAction: () => print("onClick"))
+                child: MoreOptionButton(btnType: MoreOptionButtonType.post, clickAction: () => Get.toNamed(PageRoutes.UNDERCONSTRUCTION))
             )),
           ],
         )

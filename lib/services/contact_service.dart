@@ -12,7 +12,6 @@ class ContactService extends GetxController {
   getContactList() async {
     try {
       List<Contact> contactList = await FlutterContacts.getContacts();
-      print(contactList);
       return contactList;
     } catch (e) {
       return [];
