@@ -50,3 +50,6 @@ GoogleService-Info.plist
 
 #Secret Token/Key
 token_reference.dart
+
+#HuMap Release Key
+/android/app/*.jks
