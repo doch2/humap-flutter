@@ -7,7 +7,8 @@ import '../../../themes/text_theme.dart';
 
 enum LoginButtonType {
   google,
-  kakao
+  kakao,
+  apple
 }
 
 extension LoginButtonTypeExtension on LoginButtonType {
@@ -15,6 +16,7 @@ extension LoginButtonTypeExtension on LoginButtonType {
     switch (this) {
       case LoginButtonType.google: return "구글로 로그인";
       case LoginButtonType.kakao: return "카카오톡으로 로그인";
+      case LoginButtonType.apple: return "애플로 로그인";
       default: return "";
     }
   }
@@ -23,6 +25,7 @@ extension LoginButtonTypeExtension on LoginButtonType {
     switch (this) {
       case LoginButtonType.google: return Colors.white;
       case LoginButtonType.kakao: return yellowOne;
+      case LoginButtonType.apple: return Colors.black;
       default: return Colors.transparent;
     }
   }
@@ -31,6 +34,16 @@ extension LoginButtonTypeExtension on LoginButtonType {
     switch (this) {
       case LoginButtonType.google: return grayOne;
       case LoginButtonType.kakao: return grayTwo;
+      case LoginButtonType.apple: return grayOne;
+      default: return Colors.transparent;
+    }
+  }
+
+  Color get textColor {
+    switch (this) {
+      case LoginButtonType.google: return Colors.black;
+      case LoginButtonType.kakao: return Colors.black;
+      case LoginButtonType.apple: return Colors.white;
       default: return Colors.transparent;
     }
   }
@@ -43,6 +56,11 @@ extension LoginButtonTypeExtension on LoginButtonType {
       );
       case LoginButtonType.kakao: return SvgPicture.asset(
         "assets/images/kakaoIcon.svg",
+        width: 24,
+      );
+      case LoginButtonType.apple: return SvgPicture.asset(
+        "assets/images/appleIcon.svg",
+        color: Colors.white,
         width: 24,
       );
       default: return SizedBox();
@@ -72,7 +90,7 @@ class LoginButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(child: Center(child: btnType.convertIconWidget), flex: 3),
-            Expanded(child: Center(child: Text(btnType.convertBtnContent, style: loginBtn)), flex: 4),
+            Expanded(child: Center(child: Text(btnType.convertBtnContent, style: loginBtn.copyWith(color: btnType.textColor))), flex: 4),
             Expanded(child: SizedBox(), flex: 2)
           ],
         ),

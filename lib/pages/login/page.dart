@@ -1,6 +1,8 @@
 import 'package:extended_image/extended_image.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:humap/themes/text_theme.dart';
 
@@ -43,6 +45,14 @@ class LoginPage extends GetView<LoginPageController> {
             LoginButton(btnType: LoginButtonType.google, clickAction: () => controller.authService.signInWithGoogle()),
             const SizedBox(height: 16),
             LoginButton(btnType: LoginButtonType.kakao, clickAction: () => controller.authService.signInWithKakao()),
+            const SizedBox(height: 16),
+            LoginButton(btnType: LoginButtonType.apple, clickAction: () {
+              if (Platform.isIOS) {
+                controller.authService.signInWithApple();
+              } else {
+                Fluttertoast.showToast(msg: "iOS 플랫폼 이외에는 애플 로그인을 지원하지 않습니다.");
+              }
+            }),
           ],
         ),
       ),

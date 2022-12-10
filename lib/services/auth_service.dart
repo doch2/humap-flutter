@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as kakao_flutter_lib;
 import 'package:get/get.dart' hide Response;
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../models/user.dart';
 import '../routes/routes.dart';
@@ -116,6 +117,39 @@ class AuthService extends GetxController{
       } else {
         print(e);
       }
+    }
+  }
+
+  void signInWithApple() async {
+    try {
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+
+      final oauthCredential = OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        accessToken: appleCredential.authorizationCode,
+      );
+
+      UserCredential _authResult = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+
+      loginUserInfo["userid"] = _authResult.user?.uid;
+      loginUserInfo["email"] = appleCredential.email;
+      loginUserInfo["name"] = "${appleCredential.familyName}${appleCredential.givenName}";
+
+      if (await _firestoreDatabase.isAlreadyRegisterUser(loginUserInfo["userid"])) {
+        //await _apiProvider.userLogin("google", loginUserInfo["userid"]);
+        user = await _firestoreDatabase.getUser(loginUserInfo["userid"]);
+      } else {
+        await writeAccountInfo();
+      }
+      isLogin = true;
+      Get.toNamed(PageRoutes.PRIVACYPOLICYAGREE);
+    } catch(error) {
+      print(error);
     }
   }
 
