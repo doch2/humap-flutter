@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
@@ -399,14 +401,14 @@ class HomePage extends GetView<HomePageController> {
               child: MoreOptionButton(btnType: MoreOptionButtonType.chat, clickAction: () => Get.toNamed(PageRoutes.CHATLIST))
             )),
             Obx(() => AnimatedPositioned(
-                top: 124,
+                top: (Platform.isIOS ? -100 : 124), //TODO 심사 통과를 위해 iOS에서는 미공개 기능을 숨겨놓음
                 duration: optionAnimatedDuration,
                 curve: Curves.easeIn,
                 right: (controller.isMoreOptionOpen.value ? 96 : -50),
                 child: MoreOptionButton(btnType: MoreOptionButtonType.search, clickAction: () => Get.toNamed(PageRoutes.UNDERCONSTRUCTION))
             )),
             Obx(() => AnimatedPositioned(
-                top: 148,
+                top: (Platform.isIOS ? -100 : 148), //TODO 심사 통과를 위해 iOS에서는 미공개 기능을 숨겨놓음
                 duration: optionAnimatedDuration,
                 curve: Curves.easeIn,
                 right: (controller.isMoreOptionOpen.value ? 30 : -50),
