@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:humap/common_widgets/purple_button.dart';
@@ -53,7 +54,10 @@ class PrivacyPolicyAgreePage extends StatelessWidget {
               btnSizeType: PurpleButtonSizeType.small,
               btnStatusType: PurpleButtonStatusType.enable,
               btnText: "동의",
-              clickAction: () => Get.offAndToNamed(PageRoutes.CONTACTINFOCONNECTAGREE),
+              clickAction: () {
+                AppTrackingTransparency.requestTrackingAuthorization();
+                Get.offAndToNamed(PageRoutes.CONTACTINFOCONNECTAGREE);
+              },
             )
           ],
         )
