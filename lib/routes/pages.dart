@@ -22,9 +22,9 @@ import 'routes.dart';
 
 class HumapPages {
   static final pages = [
-    GetPage(name: PageRoutes.HOME, page: () => const HomePage(), binding: HomePageBinding(), middlewares: [UnderConstructionMiddleware(), LoginMiddleware()]),
-    GetPage(name: PageRoutes.LOGIN, page: () => const LoginPage(), binding: LoginPageBinding(), middlewares: [UnderConstructionMiddleware(), LandingMiddleware()]),
-    GetPage(name: PageRoutes.LANDING, page: () => const LandingPage(), middlewares: [UnderConstructionMiddleware()]),
+    GetPage(name: PageRoutes.HOME, page: () => const HomePage(), binding: HomePageBinding(), middlewares: [LoginMiddleware(), UnderConstructionMiddleware()]),
+    GetPage(name: PageRoutes.LOGIN, page: () => const LoginPage(), binding: LoginPageBinding(), middlewares: [LandingMiddleware(), UnderConstructionMiddleware()]),
+    GetPage(name: PageRoutes.LANDING, page: () => const LandingPage()),
     GetPage(name: PageRoutes.PRIVACYPOLICYAGREE, page: () => const PrivacyPolicyAgreePage(), middlewares: [UnderConstructionMiddleware()]),
     GetPage(name: PageRoutes.CONTACTINFOCONNECTAGREE, page: () => const ContactInfoConnectAgreePage(), middlewares: [UnderConstructionMiddleware()]),
     GetPage(name: PageRoutes.NETWORKMAKING, page: () => const NetworkMakingPage(), binding: NetworkMakingPageBinding(), middlewares: [UnderConstructionMiddleware()]),
