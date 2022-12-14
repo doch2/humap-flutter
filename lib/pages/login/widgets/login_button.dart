@@ -16,7 +16,7 @@ extension LoginButtonTypeExtension on LoginButtonType {
     switch (this) {
       case LoginButtonType.google: return "구글로 로그인";
       case LoginButtonType.kakao: return "카카오톡으로 로그인";
-      case LoginButtonType.apple: return "애플로 로그인";
+      case LoginButtonType.apple: return "Apple로 로그인";
       default: return "";
     }
   }
